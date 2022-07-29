@@ -14,7 +14,7 @@
 2. `python - m pip install fastapi "uvicorn[standard]"` 입력
 3. `uvicorn main:app --reload` 으로 실행
 
-
+![2](https://user-images.githubusercontent.com/46562466/181715591-f27c6bbe-0e73-489a-9bfc-48d950172593.gif)
 ![1](https://user-images.githubusercontent.com/46562466/181696990-d3951151-433f-4d45-ba01-b2e5204bc619.gif)
 
 기본으로 있는 계정은 id: `hyuns`, pw: `123123` 입니다.
