@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p>로그인</p>
+        <input id="login_id" placeholder="아이디">
+        <input id="login_password" placeholder="비밀번호" type="password">
+        <button onclick="login()">로그인</button>
+    </div>
+    <hr>
+    <div>
+        <p>회원가입</p>
+        <input id="signup_id" placeholder="아이디">
+        <input id="signup_password" placeholder="비밀번호" type="password">
+        <button onclick="signup()">회원가입</button>
+    </div>
+    <script>
+        async function login() {
+            const id = document.getElementById('login_id').value
+            const password = document.getElementById('login_password').value
+
+            const res = await fetch('http://localhost:8000/login', {
+                method: "POST",
+                body: JSON.stringify({id: id, password: password}),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const json = await res.json()
+
+            alert(json.state ? '로그인 성공!' : '로그인 실패')
+            console.log(json)
+        }
+
+        async function signup() {
+            const id = document.getElementById('signup_id').value
+            const password = document.getElementById('signup_password').value
+
+            const res = await fetch('http://localhost:8000/signup', {
+                method: "POST",
+                body: JSON.stringify({id: id, password: password}),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            const json = await res.json()
+
+            alert('회원가입 완료')
+            console.log(json)
+        }
+
+
+    </script>
+</body>
+</html>

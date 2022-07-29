@@ -1,11 +1,7 @@
 import hashlib
 import json
 
-def signIn():
-    print('< 로그인 >')
-    id = input('아이디: ')
-    password = input('비밀번호: ')
-
+def signIn(id: str, password: str):
     hash_object = hashlib.sha256()
     hash_object.update(password.encode())
     hashedPassword = hash_object.hexdigest()
@@ -15,16 +11,25 @@ def signIn():
 
     if id not in data.keys():
         print('계정이 존재하지 않습니다.')
-        return False
+        return {
+            'state': False,
+            'code': 'ACCOUNT_NOT_FOUND'
+        }
 
     elif data[id] != hashedPassword:
         print('비밀번호가 틀렸습니다.')
-        return False
+        return {
+            'state': False,
+            'code': 'WRONG_PASSWORD'
+        }
 
     else:
-        print('로그인에 성공하였습니다.')
-    
-
+        return {
+            'state': True
+        }
 
 if __name__ == '__main__':
-    signIn()
+    print('로그인')
+    id = input('아이디: ')
+    password = input('비밀번호: ')
+    signIn(id, password)
